@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://gbsjhesvcvrm"]
+
+[ext_resource type="Script" uid="uid://k01xhq8ghg8p" path="res://script/Node/character_write.gd" id="1_n02ol"]
+
+[node name="CharacterWrite" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = -1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n02ol")
+
+[node name="Pinyin" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 19.0
+offset_top = 28.0
+offset_right = 119.0
+offset_bottom = 50.0
+scale = Vector2(0.410704, 0.381105)
+theme_override_font_sizes/font_size = 10
+placeholder_text = "Enter pinyin"
+
+[node name="Character1" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 26.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 10
+text = "人"
+
+[node name="Character2" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 32.0
+offset_top = 2.0
+offset_right = 50.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 10
+text = "人"
+
+[node name="Character3" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 56.0
+offset_top = 2.0
+offset_right = 74.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 10
+text = "人"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="text_changed" from="Pinyin" to="." method="_on_pinyin_text_changed"]
+[connection signal="text_submitted" from="Pinyin" to="." method="_on_pinyin_text_submitted"]

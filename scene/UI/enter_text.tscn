@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c5apribtolpnd"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 141.0
+offset_top = 214.0
+offset_right = 414.0
+offset_bottom = 307.0
+placeholder_text = "Enter pinyin"

@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://gbsjhesvcvrm"]
+
+[ext_resource type="Script" uid="uid://lb20lvv1dwei" path="res://scene/UI/write_character.gd" id="1_xg3ol"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pinyin" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -17.0
+offset_top = -9.0
+offset_right = 83.0
+offset_bottom = 13.0
+scale = Vector2(0.410704, 0.381105)
+theme_override_font_sizes/font_size = 10
+placeholder_text = "Enter pinyin"
+
+[node name="WriteCharacter" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 8.0
+alignment = 1
+script = ExtResource("1_xg3ol")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 69.0
+offset_bottom = 73.0
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 8.0
+offset_bottom = 11.0
+theme_override_font_sizes/font_size = 5
+text = "sole"
+
+[connection signal="text_changed" from="Pinyin" to="WriteCharacter" method="_on_pinyin_text_changed"]
+[connection signal="text_submitted" from="Pinyin" to="WriteCharacter" method="_on_pinyin_text_submitted"]

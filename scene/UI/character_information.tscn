@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cbdwnda8n74bf"]
+
+[node name="CharacterInformation" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1116.0
+offset_bottom = -595.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hanzi" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 604.0
+offset_bottom = 600.0
+scale = Vector2(0.01, 0.01)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 2000
+text = "的"
+language = "cmn_CN"
+
+[node name="Pinyin" type="Label" parent="."]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 26.0
+offset_right = 35.0
+offset_bottom = 37.1667
+theme_override_colors/font_color = Color(0.212305, 0.212305, 0.212305, 1)
+theme_override_font_sizes/font_size = 8
+text = "de"
+horizontal_alignment = 1
+
+[node name="Meaning" type="Label" parent="."]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 38.0
+offset_right = 36.0
+offset_bottom = 60.3333
+theme_override_font_sizes/font_size = 3
+text = "of; possessive particle"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 55.0
+offset_right = 17.0
+offset_bottom = 55.0

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://by714736o3gi3"]
+
+[node name="CharacterEntry" type="Button"]
+custom_minimum_size = Vector2(15, 15)
+offset_right = 19.0
+offset_bottom = 23.3542
+scale = Vector2(0.8, 0.8)
+theme_override_font_sizes/font_size = 11
+text = "母"
+language = "cmn_CN"

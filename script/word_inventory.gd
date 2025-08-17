@@ -4,6 +4,7 @@ const SAVE_FILE = "user://word_inventory.json"
 
 var all_characters = [] 
 var unlocked_characters = []
+@export var character_entry_scene: PackedScene  # drag CharacterEntry.tscn here in the Inspector
 
 func _ready():
 	var file = FileAccess.open("res://data/characters.json", FileAccess.READ)
@@ -44,3 +45,15 @@ func load_inventory():
 		if typeof(data) == TYPE_DICTIONARY and "unlocked" in data:
 			unlocked_characters = data["unlocked"]
 		file.close()
+	
+func get_character_info(symbol: String) -> Dictionary:
+	var matches = all_characters.filter(func(c): return c.hanzi == symbol)
+	if matches.size() > 0:
+		return matches[0]
+	return {}
+
+func get_character_info_from_id(id: String) -> Dictionary:
+	var matches = all_characters.filter(func(c): return c.id == id)
+	if matches.size() > 0:
+		return matches[0]
+	return {}

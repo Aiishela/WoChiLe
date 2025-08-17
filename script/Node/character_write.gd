@@ -6,12 +6,15 @@ extends Control
 	%Character2,
 	%Character3
 ]
-signal correct_choice
+
+signal character_collected(hanzi: String, pinyin: String)
 var correct_symbol: String
-var characters = []
+var correct_pinyin: String
+var correct_id: String
+var characters
 
 func _ready():
-	self.visible = !self.visible
+	close_ui()
 	var char_file = FileAccess.open("res://data/characters.json", FileAccess.READ)
 	
 	if char_file:
@@ -23,14 +26,16 @@ func _ready():
 		button.pressed.connect(Callable(self, "_on_option_pressed").bind(button))
 
 func _on_option_pressed(button):
-	if button.text == correct_symbol:
-		#emit_signal("correct_choice", button.text)
-		WordInventory.add_word(button.text)
+	var pickup = check_pickups_for(correct_id)
+	if button.text == correct_symbol and pickup:
+		pickup.collect()
+		emit_signal("character_collected", correct_symbol + "_" + correct_pinyin)
+		WordInventory.add_word(correct_symbol + "_" + correct_pinyin)
 		print("Correct!")
 	else:
 		print("Wrong!")
 		
-	self.visible = !self.visible
+	close_ui()
 
 func show_options():
 	var matches = characters.filter(func(c): return c.pinyin == pinyin_input.text)
@@ -41,6 +46,8 @@ func show_options():
 	var correct = matches[ randi() % matches.size() ]
 	var options = [correct]
 	correct_symbol = correct.hanzi
+	correct_pinyin = correct.pinyin
+	correct_id = correct.id
 	var others = characters.duplicate()
 	others.erase(correct)
 	others.shuffle()
@@ -53,6 +60,8 @@ func show_options():
 		button.visible = true
 		button.text = options[pos].hanzi
 		pos += 1
+
+# ------------------------------------------------------------------------------
 
 func _on_pinyin_text_submitted(new_text: String) -> void:
 	show_options()
@@ -73,11 +82,31 @@ func _on_pinyin_text_changed(new_text: String) -> void:
 	pinyin_input.text = new_text
 	pinyin_input.caret_column = new_text.length()
 
-# --------------------------------------------------------
+# ------------------------------------------------------------------------------
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("show_ui_character_write"):
-		self.visible = !self.visible
+		show_ui()
+		pinyin_input.text = ""
 
 func _on_visibility_changed() -> void:
 	for button in option_buttons:
 		button.visible = false
+		
+# ------------------------------------------------------------------------------
+func show_ui():
+	self.visible = !self.visible
+	if self.visible:
+		pinyin_input.grab_focus()
+		
+func close_ui():
+	visible = false
+	pinyin_input.text = ""
+	
+func check_pickups_for(word_id: String) -> Area2D:
+	print(word_id)
+	for pickup in get_tree().get_nodes_in_group("Pickups"):
+		print(pickup.sprite_name, pickup.player_inside)
+		if pickup.sprite_name == word_id and pickup.player_inside:
+			print(pickup)
+			return pickup
+	return

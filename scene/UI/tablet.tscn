@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsog1v7l6yqjx"]
+
+[ext_resource type="Texture2D" uid="uid://efhw1jse8vpt" path="res://sprite/UI/tablet.png" id="1_tbv5k"]
+[ext_resource type="Script" uid="uid://bjof5jn2qd0vc" path="res://scene/UI/tablet.gd" id="1_yfhb0"]
+[ext_resource type="PackedScene" uid="uid://by714736o3gi3" path="res://scene/UI/character_entry.tscn" id="2_a124i"]
+[ext_resource type="PackedScene" uid="uid://cbdwnda8n74bf" path="res://scene/UI/character_information.tscn" id="4_y1pqx"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_y1pqx"]
+resource_name = "CharacterEntry"
+allow_unpress = true
+
+[node name="Tablet" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -245.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yfhb0")
+character_entry_scene = ExtResource("2_a124i")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 280.0
+offset_bottom = 194.0
+scale = Vector2(3.225, 2.87727)
+texture = ExtResource("1_tbv5k")
+region_rect = Rect2(4, 42, 193, 124)
+patch_margin_left = 17
+patch_margin_top = 14
+patch_margin_right = 14
+patch_margin_bottom = 14
+
+[node name="ButtonCollectedWords" type="Button" parent="."]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 438.0
+offset_right = 139.0
+offset_bottom = 457.0
+scale = Vector2(3.225, 2.87727)
+theme_override_font_sizes/font_size = 5
+text = "collected items"
+
+[node name="CollectedWords" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 93.0
+offset_top = 84.0
+offset_right = 241.0
+offset_bottom = 187.0
+scale = Vector2(3.225, 2.87727)
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="CollectedWords"]
+layout_mode = 2
+columns = 6
+
+[node name="CharacterEntry" parent="CollectedWords/GridContainer" instance=ExtResource("2_a124i")]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_y1pqx")
+
+[node name="CharacterInformation" parent="." instance=ExtResource("4_y1pqx")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 597.0
+offset_top = 152.0
+offset_right = 629.0
+offset_bottom = 198.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(6.321, 5.63945)

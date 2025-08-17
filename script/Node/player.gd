@@ -6,6 +6,9 @@ const SPEED: float = 50.0
 @onready var player_animation: AnimatedSprite2D = %Animations
 @onready var pinyin_input: LineEdit = %CharacterWrite/Pinyin
 
+func _ready():
+	add_to_group("Player")
+
 func _physics_process(delta):
 	if pinyin_input and pinyin_input.has_focus():
 		velocity = Vector2.ZERO

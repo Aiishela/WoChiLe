@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnsxajwmvoabb"]
+
+[ext_resource type="Texture2D" uid="uid://hxr0pfsjfnet" path="res://scene/World Elements/tree1.tres" id="1_o708l"]
+
+[node name="TRESsave" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_o708l")

@@ -1,19 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpss217dt5lv2"]
+[gd_scene load_steps=9 format=3 uid="uid://bpss217dt5lv2"]
 
 [ext_resource type="Script" uid="uid://tatnp1j3kvgw" path="res://scene/main.gd" id="1_0ha60"]
 [ext_resource type="PackedScene" uid="uid://scnwvs831l08" path="res://scene/tutorial_map.tscn" id="1_v0l8b"]
 [ext_resource type="PackedScene" uid="uid://clu76b4aq6x4a" path="res://scene/player.tscn" id="2_wp4xf"]
 [ext_resource type="PackedScene" uid="uid://gbsjhesvcvrm" path="res://scene/UI/character_write_ui.tscn" id="3_brvut"]
 [ext_resource type="PackedScene" uid="uid://boqh725t4ddbm" path="res://scene/World Elements/fire.tscn" id="3_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://bsog1v7l6yqjx" path="res://scene/UI/tablet.tscn" id="6_4j5ol"]
+[ext_resource type="PackedScene" uid="uid://pf2h55ny4t7o" path="res://scene/World Elements/word_element_pickup.tscn" id="7_p1hux"]
+[ext_resource type="PackedScene" uid="uid://ce2r2ufoxg6va" path="res://scene/garden.tscn" id="8_of57s"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0ha60")
 
 [node name="TutorialMap" parent="." instance=ExtResource("1_v0l8b")]
-position = Vector2(1, -1)
+
+[node name="Garden" parent="." instance=ExtResource("8_of57s")]
+position = Vector2(326, 330)
+
+[node name="Fire" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(389, 256)
+autoplay = "default"
+
+[node name="WordElementPickup" parent="." instance=ExtResource("7_p1hux")]
+position = Vector2(352, 240)
+sprite_name = "fire"
 
 [node name="Player" parent="." instance=ExtResource("2_wp4xf")]
 unique_name_in_owner = true
+light_mask = 2
 position = Vector2(391, 236)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -31,6 +45,27 @@ offset_top = 51.0
 offset_right = -70.0
 offset_bottom = 96.0
 
-[node name="AnimatedSprite2D" parent="." instance=ExtResource("3_wp4xf")]
-position = Vector2(389, 256)
-autoplay = "default"
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Tablet" parent="CanvasLayer" instance=ExtResource("6_4j5ol")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -467.0
+offset_top = -278.0
+offset_right = 443.0
+offset_bottom = 287.0
+
+[node name="WordElementPickup2" parent="." instance=ExtResource("7_p1hux")]
+position = Vector2(364, 195)
+sprite_name = "fire"
+
+[node name="WordElementPickup3" parent="." instance=ExtResource("7_p1hux")]
+position = Vector2(286, 194)
+sprite_name = "fire"
+
+[connection signal="input_event" from="Player" to="." method="_on_player_input_event"]
